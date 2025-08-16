@@ -14,7 +14,9 @@ const registerUser = asyncHandler(async(req, res)=>{
     // check for user creation 
     // return response
 
-    const {userName, password, email} = req.body
+    const {userName, password, email} = req.body;
+    console.log(userName);
+    
     if(
         [userName, password, email].some((field)=>field?.trim()==="")
     ){
