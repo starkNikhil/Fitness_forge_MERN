@@ -46,8 +46,8 @@ UserRegistrationSchema.methods.isPasswordCorrect = async function (password) {
     return await bcrypt.compare(password, this.password);
 };
 
-UserRegistrationSchema.methods.generateAccessToken = async function(){
-    jwt.sign(
+UserRegistrationSchema.methods.generateAccessToken = function(){
+    return jwt.sign(
         {
             _id: this._id,
             email: this.email,
@@ -60,8 +60,8 @@ UserRegistrationSchema.methods.generateAccessToken = async function(){
     )
 }
 
-UserRegistrationSchema.methods.generateRefreshToken = async function(params) {
-    jwt.sign(
+UserRegistrationSchema.methods.generateRefreshToken = function() {
+    return jwt.sign(
         {
             _id: this._id,
         },

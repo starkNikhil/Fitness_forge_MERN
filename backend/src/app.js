@@ -15,8 +15,8 @@ app.use(express.json({
 }));
 
 app.use(express.urlencoded({
-    extended:true
-    // limit:"50kb"
+    extended:true,
+    limit:"50kb"
 }
 ))
 

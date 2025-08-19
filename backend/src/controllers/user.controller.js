@@ -13,14 +13,14 @@ const generateAccessAndRefreshToken = async (userId) => {
 
     user.refreshToken = refreshToken;
     await user.save({
-      validateBeforeSave: false,
+      validateBeforeSave: false
     });
 
     return { accessToken, refreshToken };
   } catch (error) {
     throw new ApiError(
       500,
-      "Soething went wrong while genreating access and refresh token."
+      "Something went wrong while genreating access and refresh token."
     );
   }
 };
@@ -35,7 +35,7 @@ const registerUser = asyncHandler(async (req, res) => {
   // return response
 
   const { userName, password, email } = req.body;
-  console.log(userName);
+  // console.log(userName);
 
   if ([userName, password, email].some((field) => field?.trim() === "")) {
     throw new ApiError(400, "All fields are compulsory");
@@ -85,14 +85,17 @@ const loginUser = asyncHandler(async (req, res) => {
     throw new ApiError(404, "User does not exist");
   }
 
-  const isPasswordCorrect = await user.isPasswordCorrect(password);
-  if (!isPasswordCorrect) {
+  const isPasswordvalid = await user.isPasswordCorrect(password);
+  if (!isPasswordvalid) {
     throw new ApiError(401, "Invalid Credentials");
   }
 
   const { accessToken, refreshToken } = await generateAccessAndRefreshToken(
     user._id
   );
+  console.log("accessToken: ",accessToken);
+  console.log("refreshToken: ", refreshToken);
+  
 
   const loggedInUser = await UserRegistration.findById(user._id).select(
     "-password -refreshToken"
@@ -112,8 +115,8 @@ const loginUser = asyncHandler(async (req, res) => {
         200,
         {
           user: loggedInUser,
-          refreshToken,
           accessToken,
+          refreshToken
         },
         "user logged in successfully"
       )
@@ -124,8 +127,8 @@ const logOutUser = asyncHandler(async (req, res) => {
   await UserRegistration.findByIdAndUpdate(
     req.user._id,
     {
-      $set: {
-        refreshToken: undefined,
+      $unset: {
+        refreshToken: 1,
       },
     },
     {
