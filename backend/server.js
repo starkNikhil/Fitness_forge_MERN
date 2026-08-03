@@ -1,12 +1,13 @@
-const express = require('express');
-
-
+import express from 'express';
+import { User } from'./models/user.model.js';
+import {connectDB} from './config/database.js';
 
 // ENV configuration
-const dotenv = require('dotenv')
+import dotenv from 'dotenv'
 dotenv.config()
 
-const connectDB = require('./config/database.js')
+
+
 
 const app = express();
 
@@ -28,7 +29,22 @@ app.use(express.json());
 // routes
 
 
+app.post('/users/register', async function (req,res) {
+    const {userName, password, email} = req.body;
+    const user = await User.findOne({userName});
 
+    if(user){
+        res.status(401).json("User already exists");
+    }else{
+        const newUser = new User({
+            userName: userName,
+            email: email,
+            password: password
+        })
+        newUser.save();
+        res.status(201).json("User created successfully");
+    }
+})
 
 
 
