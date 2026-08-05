@@ -28,23 +28,10 @@ app.use(express.json());
 
 // routes
 
+import userRouter from './routes/user.routes.js'
 
-app.post('/users/register', async function (req,res) {
-    const {userName, password, email} = req.body;
-    const user = await User.findOne({userName});
+app.use('/api/v1/users', userRouter);
 
-    if(user){
-        res.status(401).json("User already exists");
-    }else{
-        const newUser = new User({
-            userName: userName,
-            email: email,
-            password: password
-        })
-        newUser.save();
-        res.status(201).json("User created successfully");
-    }
-})
 
 
 
