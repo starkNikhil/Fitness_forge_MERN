@@ -1,7 +1,7 @@
 import express from 'express';
 import { User } from'./models/user.model.js';
 import {connectDB} from './config/database.js';
-
+import cookieParser from 'cookie-parser';
 // ENV configuration
 import dotenv from 'dotenv'
 dotenv.config()
@@ -20,7 +20,7 @@ connectDB()
 
 // Middlewares
 app.use(express.json());
-// app.use()
+app.use(cookieParser())
 
 
 
