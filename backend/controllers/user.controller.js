@@ -5,6 +5,7 @@ import { User } from "../models/user.model.js";
 import { UserPhysicalDetail } from '../models/userPhysicalDetails.model.js'
 import jwt from 'jsonwebtoken';
 import mongoose from "mongoose";
+import { BlogsSchema } from "../models/blogs.schema.js";
 
 const isFieldEmpty = (field) => {
     if (field === undefined || field === null) return true;
@@ -142,19 +143,19 @@ const fillForm = asyncHandler(async (req, res) => {
     if ([firstName, lastName, dateOfBirth, gender, height, weight, currentIssues, pastIssue, profession, sleepHours, dietDetails, workOutAvailability, workOutTiming].some(isFieldEmpty)) {
         throw new ApiError(400, "All fields are required.")
     }
-    console.log(` firstName: ${firstName},
-        lastName: ${lastName},
-        dateOfBirth: ${dateOfBirth},
-        gender: ${gender},
-        height ${height},
-        weight: ${weight},
-        currentIssues: ${currentIssues},
-        pastIssue: ${pastIssue},
-        profession: ${profession},
-        sleepHours: ${sleepHours},
-        dietDetails: ${dietDetails},
-        workOutAvailability: ${workOutAvailability},
-        workOutTiming: ${workOutTiming}`);
+    // console.log(` firstName: ${firstName},
+    //     lastName: ${lastName},
+    //     dateOfBirth: ${dateOfBirth},
+    //     gender: ${gender},
+    //     height ${height},
+    //     weight: ${weight},
+    //     currentIssues: ${currentIssues},
+    //     pastIssue: ${pastIssue},
+    //     profession: ${profession},
+    //     sleepHours: ${sleepHours},
+    //     dietDetails: ${dietDetails},
+    //     workOutAvailability: ${workOutAvailability},
+    //     workOutTiming: ${workOutTiming}`);
     
     const existedUser = await UserPhysicalDetail.findOne({ userId: req.user._id });
     if (existedUser) {
@@ -168,7 +169,6 @@ const fillForm = asyncHandler(async (req, res) => {
         gender: gender,
         height: Number(height),
         weight: Number(weight),
-        // BMI: UserPhysicalDetail.calculateBMI(height, weight),
         currentIssues: currentIssues,
         pastIssue: pastIssue,
         profession: profession,
@@ -201,6 +201,18 @@ const getUserProfile = asyncHandler(async (req, res) => {
 
 
     res.status(201).json(new ApiResponse(201, user))
+})
+
+
+
+const getBlogData = asyncHandler(async (req,res) => {
+    const user = BlogsSchema.findOne({userId: req.user._id})
+    if(!user){
+        throw new ApiError(401, "User not found")
+    }
+
+    const {title, }
+
 })
 
 export { registerUser, generateAccessAndRefreshToken, loginUser, logOutUser, getUserProfile, fillForm }
