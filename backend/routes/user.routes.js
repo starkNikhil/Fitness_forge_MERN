@@ -1,6 +1,6 @@
 import {Router} from 'express';
 import { verifyJWT } from '../middlewares/auth.middleware.js';
-import {loginUser, registerUser, logOutUser, userProfile, fillForm} from '../controllers/user.controller.js'
+import {loginUser, registerUser, logOutUser, getUserProfile, fillForm} from '../controllers/user.controller.js'
 
 
 
@@ -15,7 +15,7 @@ router.route('/profile').post(verifyJWT, fillForm)
 
 
 // get user profile if it is already filled
-router.route('/profile').get(verifyJWT, userProfile)
+router.route('/profile').get(verifyJWT, getUserProfile)
 
 
 

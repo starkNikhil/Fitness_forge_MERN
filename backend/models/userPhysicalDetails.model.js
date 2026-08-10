@@ -92,4 +92,4 @@ physicalDetailSchema.pre("save", async function () {
 
 
 
-export const UserPhysicalDetail = new mongoose.model("PhysicalDetailSchema", physicalDetailSchema)
+export const UserPhysicalDetail = mongoose.model("PhysicalDetailSchema", physicalDetailSchema)

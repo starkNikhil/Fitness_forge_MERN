@@ -121,16 +121,6 @@ const logOutUser = asyncHandler(async (req, res) => {
 })
 
 
-const userProfile = asyncHandler(async (req, res) => {
-
-    const profile = await UserPhysicalDetail.findById({ userId: req.user._id })
-    if (!profile) {
-        throw new ApiError(401, "User profile is npt found")
-    }
-
-    return res.status(200).json(new ApiResponse(201, { userDetails: profile }, "User Profile retrieved successfully"))
-})
-
 
 const fillForm = asyncHandler(async (req, res) => {
     const { firstName,
@@ -201,4 +191,16 @@ const fillForm = asyncHandler(async (req, res) => {
 })
 
 
-export { registerUser, generateAccessAndRefreshToken, loginUser, logOutUser, userProfile, fillForm }
+const getUserProfile = asyncHandler(async (req, res) => {
+    const user = await UserPhysicalDetail.findOne({userId: req.user._id}).select("-userId -_id")
+    console.log(`user Details: ${user}`);
+    
+    if(!user){
+        throw new ApiError(400, "User details not found")
+    }
+
+
+    res.status(201).json(new ApiResponse(201, user))
+})
+
+export { registerUser, generateAccessAndRefreshToken, loginUser, logOutUser, getUserProfile, fillForm }
