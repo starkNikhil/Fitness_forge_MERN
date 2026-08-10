@@ -1,6 +1,7 @@
 # Fitness Forge Backend Documentation
 
 ## Overview
+
 This is the backend API for the Fitness Forge MERN application, built with Node.js, Express, and MongoDB. It handles user authentication (registration, login, logout) and other fitness-related operations.
 
 ---
@@ -10,16 +11,19 @@ This is the backend API for the Fitness Forge MERN application, built with Node.
 ### 1. User Registration
 
 #### Endpoint
-```
+
+``` code
 POST /api/auth/register
 ```
 
 #### File Location
+
 - **Controller**: `controllers/authController.js`
 - **Route**: `routes/authRoutes.js`
 - **Model**: `models/User.js`
 
 #### Request Body
+
 ```json
 {
   "name": "string",
@@ -30,6 +34,7 @@ POST /api/auth/register
 ```
 
 #### Response
+
 ```json
 {
   "success": true,
@@ -43,6 +48,7 @@ POST /api/auth/register
 ```
 
 #### Working
+
 1. User submits registration form with name, email, password, and confirm password
 2. Backend validates input fields
 3. Checks if user already exists with the email
@@ -51,6 +57,7 @@ POST /api/auth/register
 6. Returns success message with user data
 
 #### Key Features
+
 - Password hashing for security
 - Email validation
 - Duplicate email prevention
@@ -61,16 +68,19 @@ POST /api/auth/register
 ### 2. User Login
 
 #### Endpoint
-```
+
+```code
 POST /api/auth/login
 ```
 
-#### File Location
+#### Route and File Location
+
 - **Controller**: `controllers/authController.js`
 - **Route**: `routes/authRoutes.js`
 - **Model**: `models/User.js`
 
 #### Request Body
+
 ```json
 {
   "email": "string",
@@ -79,6 +89,7 @@ POST /api/auth/login
 ```
 
 #### Response
+
 ```json
 {
   "success": true,
@@ -93,6 +104,7 @@ POST /api/auth/login
 ```
 
 #### Working
+
 1. User submits email and password
 2. Backend finds user by email in database
 3. Compares password with stored hashed password using bcrypt
@@ -101,6 +113,7 @@ POST /api/auth/login
 6. Token is stored in frontend (localStorage/sessionStorage/cookies)
 
 #### Key Features
+
 - JWT token generation for session management
 - Password verification with bcrypt
 - Token expiration settings
@@ -111,20 +124,24 @@ POST /api/auth/login
 ### 3. User Logout
 
 #### Endpoint
+
 ```
 POST /api/auth/logout
 ```
 
 #### File Location
+
 - **Controller**: `controllers/authController.js`
 - **Route**: `routes/authRoutes.js`
 
 #### Request Headers
+
 ```
 Authorization: Bearer JWT_TOKEN
 ```
 
 #### Response
+
 ```json
 {
   "success": true,
@@ -133,6 +150,7 @@ Authorization: Bearer JWT_TOKEN
 ```
 
 #### Working
+
 1. User sends logout request with JWT token
 2. Backend validates the token
 3. Clears the session/token from backend (optional, depends on implementation)
@@ -140,6 +158,7 @@ Authorization: Bearer JWT_TOKEN
 5. User is redirected to login page
 
 #### Key Features
+
 - Token validation
 - Session termination
 - Redirect to authentication page
@@ -221,6 +240,7 @@ Common error responses:
 ## Testing Endpoints
 
 ### Register User
+
 ```bash
 curl -X POST http://localhost:5000/api/auth/register \
   -H "Content-Type: application/json" \
@@ -233,6 +253,7 @@ curl -X POST http://localhost:5000/api/auth/register \
 ```
 
 ### Login User
+
 ```bash
 curl -X POST http://localhost:5000/api/auth/login \
   -H "Content-Type: application/json" \
@@ -243,6 +264,7 @@ curl -X POST http://localhost:5000/api/auth/login \
 ```
 
 ### Logout User
+
 ```bash
 curl -X POST http://localhost:5000/api/auth/logout \
   -H "Authorization: Bearer JWT_TOKEN"

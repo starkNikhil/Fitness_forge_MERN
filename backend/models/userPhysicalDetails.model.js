@@ -27,15 +27,15 @@ const physicalDetailSchema = new Schema({
     },
     height: {
         type: Number,
-        required: true
+        // required: true
     },
     weight: {
         type: Number,
-        required: true
+        // required: true
     },
     BMI: {
         type: Number,
-        required: true
+        // required: true
     },
     currentIssues: {
         type: String,
@@ -76,10 +76,19 @@ const physicalDetailSchema = new Schema({
 
 })
 
-physicalDetailSchema.methods.calculateBMI= async function (weight, height ) {
-    const bmi = weight/ height**2
-    return bmi
-}
+physicalDetailSchema.pre("save", async function () {
+    if (this.isModified("weight") || this.isModified("height")) {
+        if (this.weight && this.height) {
+            // Converts cm to meters if needed (e.g., 175 cm becomes 1.75 m)
+            const heightInMeters = this.height > 3 ? this.height / 100 : this.height;
+            const calculatedBMI = this.weight / (heightInMeters ** 2);
+            this.BMI = Number(calculatedBMI.toFixed(2));
+        }
+    }
+});
+
+
+
 
 
 

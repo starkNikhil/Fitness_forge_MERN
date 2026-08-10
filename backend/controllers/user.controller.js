@@ -6,6 +6,15 @@ import { UserPhysicalDetail } from '../models/userPhysicalDetails.model.js'
 import jwt from 'jsonwebtoken';
 import mongoose from "mongoose";
 
+const isFieldEmpty = (field) => {
+    if (field === undefined || field === null) return true;
+    if (typeof field === "string") return field.trim() === "";
+    return false; // For numbers, booleans, etc.
+};
+
+
+
+
 const generateAccessAndRefreshToken = async (userId) => {
     try {
         const user = await User.findById(userId);
@@ -130,28 +139,47 @@ const fillForm = asyncHandler(async (req, res) => {
         gender,
         height,
         weight,
-        currentIssue,
+        currentIssues,
         pastIssue,
         profession,
         sleepHours,
         dietDetails,
         workOutAvailability,
         workOutTiming } = req.body;
-    if ([firstName, lastName, dateOfBirth, gender, height, weight, currentIssue, pastIssue, profession, sleepHours, dietDetails, workOutAvailability, workOutTiming].some((field) => field.trim() === "")) {
+
+
+    
+    if ([firstName, lastName, dateOfBirth, gender, height, weight, currentIssues, pastIssue, profession, sleepHours, dietDetails, workOutAvailability, workOutTiming].some(isFieldEmpty)) {
         throw new ApiError(400, "All fields are required.")
     }
+    console.log(` firstName: ${firstName},
+        lastName: ${lastName},
+        dateOfBirth: ${dateOfBirth},
+        gender: ${gender},
+        height ${height},
+        weight: ${weight},
+        currentIssues: ${currentIssues},
+        pastIssue: ${pastIssue},
+        profession: ${profession},
+        sleepHours: ${sleepHours},
+        dietDetails: ${dietDetails},
+        workOutAvailability: ${workOutAvailability},
+        workOutTiming: ${workOutTiming}`);
+    
     const existedUser = await UserPhysicalDetail.findOne({ userId: req.user._id });
     if (existedUser) {
         throw new ApiError(401, "USer details already exists")
     }
-    const details = await new UserPhysicalDetail.create({
+    const details = await UserPhysicalDetail.create({
+        userId: req.user._id,
         firstName: firstName,
         lastName: lastName,
         dateOfBirth: dateOfBirth,
         gender: gender,
-        height: height,
-        BMI: calculateBMI(height, weight),
-        currentIssue: currentIssue,
+        height: Number(height),
+        weight: Number(weight),
+        // BMI: UserPhysicalDetail.calculateBMI(height, weight),
+        currentIssues: currentIssues,
         pastIssue: pastIssue,
         profession: profession,
         sleepHours: sleepHours,
@@ -160,14 +188,15 @@ const fillForm = asyncHandler(async (req, res) => {
         workOutTiming: workOutTiming
 
     })
+    
 
     console.log(`Details: ${details}`);
-     const createUserDetails = await UserPhysicalDetail.findById(user._id);
+     const createUserDetails = await UserPhysicalDetail.findById(details._id);
     if (!createUserDetails) {
         throw new ApiError(500, "Something went wrong while registering physical details");
     }
 
-    res.status(200).json(new ApiResponse(200, "Details saved successfully."))
+    res.status(200).json(new ApiResponse(201,createUserDetails, "Details saved successfully."))
 
 })
 
