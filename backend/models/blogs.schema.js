@@ -19,8 +19,13 @@ const blogsSchema = new Schema({
         type: String,
         required: true
     },
+    excerpt:{
+        type: String,
+        required: true
+    }
+    ,
 
-    imageUrl:{
+    blogImageUrl:{
         type: String,
         required: true
     },
@@ -33,14 +38,14 @@ const blogsSchema = new Schema({
 })
 
 blogsSchema.pre("save", async function () {
-    if(this.isModified(this.userId)&& !this.name){
-        const user = await User.findById(this.userId)
-        if(user){
-            if(user.lastName){
-                this.name = `${user.firstName} ${user.lastName}`
-            }else{
-                this.name = `${user.firstName}`
-            }
+    // FIX 1: Pass the field name as a string "userId"
+    // FIX 2: Matched 'Name' field casing defined in the schema
+    if (this.isModified("userId") && !this.Name) {
+        const user = await User.findById(this.userId);
+        if (user) {
+            this.Name = user.lastName 
+                ? `${user.firstName} ${user.lastName}` 
+                : `${user.firstName}`;
         }
     }
 });

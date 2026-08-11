@@ -2,10 +2,11 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/apiResponse.js";
 import { User } from "../models/user.model.js";
+import { BlogsSchema } from "../models/blogs.schema.js";
+import {uploadImage} from "../utils/cloudinary.js"
 import { UserPhysicalDetail } from '../models/userPhysicalDetails.model.js'
 import jwt from 'jsonwebtoken';
 import mongoose from "mongoose";
-import { BlogsSchema } from "../models/blogs.schema.js";
 
 const isFieldEmpty = (field) => {
     if (field === undefined || field === null) return true;
@@ -205,14 +206,58 @@ const getUserProfile = asyncHandler(async (req, res) => {
 
 
 
-const getBlogData = asyncHandler(async (req,res) => {
-    const user = BlogsSchema.findOne({userId: req.user._id})
-    if(!user){
-        throw new ApiError(401, "User not found")
+const generateExcerpts = (content, wordLimit =100)=>{
+    const words = content.trim().split(/\s+/)
+
+    if(words.length <= wordLimit){
+        return content.trim();
+    }
+    return words.slice(0, wordLimit).join(" ") + "..."
+}
+
+
+const getBlogData = asyncHandler(async (req, res) => {
+    // 1. Added await and fixed query to findById
+    const user = await User.findById(req.user._id);
+    if (!user) {
+        throw new ApiError(404, "User not found");
     }
 
-    const {title, }
+    const { title, content } = req.body;
+    if (!title || !content) {
+        throw new ApiError(400, "Title and content are required");
+    }
 
-})
+    const excerpt = generateExcerpts(content);
+    const blogImageLocalPath = req.files?.blogImage?.[0]?.path;
+    
+    if (!blogImageLocalPath) {
+        throw new ApiError(400, "Blog image is required");
+    }
 
-export { registerUser, generateAccessAndRefreshToken, loginUser, logOutUser, getUserProfile, fillForm }
+    const image = await uploadImage(blogImageLocalPath);
+    if (!image || !image.url) {
+        throw new ApiError(500, "Error uploading image to Cloudinary");
+    }
+
+    // 2. Save secure_url (string), not the entire response object
+    const blogData = await BlogsSchema.create({
+        userId: req.user._id,
+        title,
+        content,
+        excerpt,
+        blogImageUrl: image.secure_url || image.url
+    });
+
+    // 3. Verify using the created document's _id
+    const createdBlog = await BlogsSchema.findById(blogData._id);
+    if (!createdBlog) {
+        throw new ApiError(500, "Something went wrong while creating the blog");
+    }
+
+    return res.status(201).json(
+        new ApiResponse(201, createdBlog, "Blog created successfully")
+    );
+});
+
+export { registerUser, generateAccessAndRefreshToken, loginUser, logOutUser, getUserProfile, fillForm , getBlogData}
