@@ -222,6 +222,7 @@ const getBlogData = asyncHandler(async (req, res) => {
     if (!user) {
         throw new ApiError(404, "User not found");
     }
+    
 
     const { title, content } = req.body;
     if (!title || !content) {
@@ -239,10 +240,20 @@ const getBlogData = asyncHandler(async (req, res) => {
     if (!image || !image.url) {
         throw new ApiError(500, "Error uploading image to Cloudinary");
     }
+    const userDetails = await UserPhysicalDetail.findOne({userId: req.user._id})
+    if(!userDetails){
+         throw new ApiError(404, "User details not found");
+    }
 
+    const name = userDetails.lastName 
+                ? `${userDetails.firstName} ${userDetails.lastName}` 
+                : `${userDetails.firstName}`;
+    
+                
     // 2. Save secure_url (string), not the entire response object
     const blogData = await BlogsSchema.create({
         userId: req.user._id,
+        Name: name,
         title,
         content,
         excerpt,
