@@ -27,17 +27,22 @@ app.use(cookieParser())
 
 
 // routes
-
+// user routes
 import userRouter from './routes/user.routes.js'
 
 app.use('/api/v1/users', userRouter);
 
 
+// profile routes
+import profileRouter from './routes/profile.routes.js'
+app.use('/api/v1/users', profileRouter)
 
 
 
-
-
+// blog routes
+import blogRouter from './routes/blogs.routes.js'
+// create blog
+app.use('/api/v1/blogs', blogRouter)
 
 
 app.listen(PORT||3000,()=>{
