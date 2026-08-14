@@ -86,6 +86,16 @@ const showAllBlogs = asyncHandler(async (req, res)=>{
 })
 
 
+const readFullBlog = asyncHandler(async (req, res) => {
+    const blog = await blogData.findById(req.params.id)
+    if(!blog){
+        throw new ApiError(401, "No blog found");
+    }
+    const blog = blog.select('title Name content')
+    res.status(200).json(new ApiResponse(200, blog))
+})
 
 
-export {getBlogData, showAllBlogs}
+
+
+export {getBlogData, showAllBlogs, readFullBlog}
