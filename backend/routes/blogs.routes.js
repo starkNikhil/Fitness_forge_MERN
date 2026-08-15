@@ -1,5 +1,5 @@
 import Router from 'express'
-import {getBlogData, showAllBlogs, readFullBlog} from "../controllers/blog.controller.js"
+import {getBlogData, showAllBlogs, readFullBlog, updateBlog} from "../controllers/blog.controller.js"
 import { upload } from './../middlewares/multer.middleware.js';
 import { verifyJWT } from '../middlewares/auth.middleware.js';
 
@@ -15,5 +15,8 @@ router.route('/viewBlogs').get(showAllBlogs)
 
 // read a blog
 router.route('/readBlog').get(verifyJWT, readFullBlog )
+
+// update blog route
+router.route('/updateBlog', verifyJWT, updateBlog )
 
 export default router;
