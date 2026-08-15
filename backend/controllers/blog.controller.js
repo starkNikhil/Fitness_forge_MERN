@@ -88,11 +88,10 @@ const showAllBlogs = asyncHandler(async (req, res)=>{
 
 const readFullBlog = asyncHandler(async (req, res) => {
     
-    const blog = await blogData.findById(req.params.id)
+    const blog = await Blogs.findById(req.params.blogId).select('title Name content')
     if(!blog){
         throw new ApiError(401, "No blog found");
     }
-    const blog = blog.select('title Name content')
     res.status(200).json(new ApiResponse(200, blog))
 })
 
@@ -101,22 +100,7 @@ const updateBlog = asyncHandler(async (req, res)=>{
      const {title, content} = req.body;
      console.log(`title: ${title} body: ${content}`);
 
-     const blog = await blogData.findByIdAndUpdate(req.params.id,  {
-        title, content
-    }, async function (error, docs) {
-        if(error)
-        {
-            throw new ApiError(400, error)
-        }else{
-            console.log(blog.select('Name title content'));
-            
-        }
-    })
-    if(!blog){
-        throw new ApiError(401, "No blog found");
-    }
-    const blog = blog.select('title Name content')
-    res.status(200).json(new ApiResponse(200, 'blog updated'))
+    
 })
 
 export {getBlogData, showAllBlogs, readFullBlog, updateBlog}

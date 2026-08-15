@@ -14,9 +14,9 @@ router.route('/createBlog').post(verifyJWT,
 router.route('/viewBlogs').get(showAllBlogs)
 
 // read a blog
-router.route('/readBlog').get(verifyJWT, readFullBlog )
+router.route('/readBlog/:blogId').get(verifyJWT, readFullBlog )
 
 // update blog route
-router.route('/updateBlog', verifyJWT, updateBlog )
+router.route('/updateBlog/:blogId').patch( verifyJWT, updateBlog )
 
 export default router;
