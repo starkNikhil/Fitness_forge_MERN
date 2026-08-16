@@ -98,7 +98,14 @@ const readFullBlog = asyncHandler(async (req, res) => {
 
 const updateBlog = asyncHandler(async (req, res)=>{
      const {title, content} = req.body;
-     console.log(`title: ${title} body: ${content}`);
+    //  console.log(`title: ${title} body: ${content}`);
+    try {
+        const updatedBlog = await Blogs.findByIdAndUpdate(req.params.blogId, {title: title, content: content})
+        console.log(updateBlog);
+    res.status(200).json(new ApiResponse(200, "Blog updated successfully"))        
+    } catch (error) {
+        throw new ApiError(error)
+    }
 
     
 })
