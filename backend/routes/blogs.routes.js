@@ -1,5 +1,5 @@
 import Router from 'express'
-import {getBlogData, showAllBlogs, readFullBlog, updateBlog} from "../controllers/blog.controller.js"
+import {getBlogData, showAllBlogs, readFullBlog, updateBlog, deleteBlog} from "../controllers/blog.controller.js"
 import { upload } from './../middlewares/multer.middleware.js';
 import { verifyJWT } from '../middlewares/auth.middleware.js';
 
@@ -19,4 +19,8 @@ router.route('/readBlog/:blogId').get(verifyJWT, readFullBlog )
 // update blog route
 router.route('/updateBlog/:blogId').patch( verifyJWT, updateBlog )
 
+
+//delete blog
+
+router.route('/deleteBlog/:blogId').delete(verifyJWT, deleteBlog)
 export default router;

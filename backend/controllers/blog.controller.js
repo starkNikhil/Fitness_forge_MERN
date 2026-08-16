@@ -1,6 +1,6 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/apiError.js";
-import {ApiResponse} from "../utils/apiResponse.js"
+import { ApiResponse } from "../utils/apiResponse.js"
 import { UserPhysicalDetail } from "../models/userPhysicalDetails.model.js";
 import { Blogs } from "../models/blogs.schema.js";
 import { User } from "../models/user.model.js";
@@ -8,10 +8,10 @@ import { uploadImage } from "../utils/cloudinary.js";
 
 
 
-const generateExcerpts = (content, wordLimit =100)=>{
+const generateExcerpts = (content, wordLimit = 100) => {
     const words = content.trim().split(/\s+/)
 
-    if(words.length <= wordLimit){
+    if (words.length <= wordLimit) {
         return content.trim();
     }
     return words.slice(0, wordLimit).join(" ") + "..."
@@ -24,7 +24,7 @@ const getBlogData = asyncHandler(async (req, res) => {
     if (!user) {
         throw new ApiError(404, "User not found");
     }
-    
+
 
     const { title, content } = req.body;
     if (!title || !content) {
@@ -33,7 +33,7 @@ const getBlogData = asyncHandler(async (req, res) => {
 
     const excerpt = generateExcerpts(content);
     const blogImageLocalPath = req.files?.blogImage?.[0]?.path;
-    
+
     if (!blogImageLocalPath) {
         throw new ApiError(400, "Blog image is required");
     }
@@ -42,16 +42,16 @@ const getBlogData = asyncHandler(async (req, res) => {
     if (!image || !image.url) {
         throw new ApiError(500, "Error uploading image to Cloudinary");
     }
-    const userDetails = await UserPhysicalDetail.findOne({userId: req.user._id})
-    if(!userDetails){
-         throw new ApiError(404, "User details not found");
+    const userDetails = await UserPhysicalDetail.findOne({ userId: req.user._id })
+    if (!userDetails) {
+        throw new ApiError(404, "User details not found");
     }
 
-    const name = userDetails.lastName 
-                ? `${userDetails.firstName} ${userDetails.lastName}` 
-                : `${userDetails.firstName}`;
-    
-                
+    const name = userDetails.lastName
+        ? `${userDetails.firstName} ${userDetails.lastName}`
+        : `${userDetails.firstName}`;
+
+
     // 2. Save secure_url (string), not the entire response object
     const blogData = await Blogs.create({
         userId: req.user._id,
@@ -73,13 +73,13 @@ const getBlogData = asyncHandler(async (req, res) => {
     );
 });
 
-const showAllBlogs = asyncHandler(async (req, res)=>{
-    const blogs = await Blogs.find({status: "approved"}).select("Name title excerpt")
-    if(!blogs){
+const showAllBlogs = asyncHandler(async (req, res) => {
+    const blogs = await Blogs.find({ status: "approved" }).select("Name title excerpt")
+    if (!blogs) {
         throw new ApiError(400, "No blog is available")
     }
     // console.log(blogs);
-    
+
     res.status(200).json(
         new ApiResponse(200, blogs)
     )
@@ -87,27 +87,45 @@ const showAllBlogs = asyncHandler(async (req, res)=>{
 
 
 const readFullBlog = asyncHandler(async (req, res) => {
-    
+
     const blog = await Blogs.findById(req.params.blogId).select('title Name content')
-    if(!blog){
+    if (!blog) {
         throw new ApiError(401, "No blog found");
     }
     res.status(200).json(new ApiResponse(200, blog))
 })
 
 
-const updateBlog = asyncHandler(async (req, res)=>{
-     const {title, content} = req.body;
+const updateBlog = asyncHandler(async (req, res) => {
+    const { title, content } = req.body;
     //  console.log(`title: ${title} body: ${content}`);
     try {
-        const updatedBlog = await Blogs.findByIdAndUpdate(req.params.blogId, {title: title, content: content})
+        const updatedBlog = await Blogs.findByIdAndUpdate(req.params.blogId, { title: title, content: content })
         console.log(updateBlog);
-    res.status(200).json(new ApiResponse(200, "Blog updated successfully"))        
+        res.status(200).json(new ApiResponse(200, "Blog updated successfully"))
     } catch (error) {
         throw new ApiError(error)
     }
 
-    
+
 })
 
-export {getBlogData, showAllBlogs, readFullBlog, updateBlog}
+const deleteBlog = asyncHandler(async (req, res) => {
+    const id = req.params.blogId
+    try {
+
+        const deletedBlog = await Blogs.findByIdAndDelete(id);
+
+        if (!deleteBlog) {
+            throw new ApiError(400,"Blog not found!");
+        } else {
+            res.status(200).json(new ApiResponse(200, "Blog deleted successfully"))
+        }
+
+    } catch (error) {
+        console.error("Error deleting blog:", error);
+    }
+
+})
+
+export { getBlogData, showAllBlogs, readFullBlog, updateBlog, deleteBlog }
