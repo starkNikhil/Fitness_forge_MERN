@@ -72,7 +72,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
 const loginUser = asyncHandler(async (req, res) => {
     const { userName, password } = req.body;
-    if (!(userName || password)) {
+    if (!(userName && password)) {
         throw new ApiError(400, "username and password is required")
     }
     // console.log(`userName: ${userName}, password: ${password}`);
@@ -196,11 +196,11 @@ const getUserProfile = asyncHandler(async (req, res) => {
     console.log(`user Details: ${user}`);
     
     if(!user){
-        throw new ApiError(400, "User details not found")
+        throw new ApiError(400, "User details not found");
     }
 
 
-    res.status(201).json(new ApiResponse(201, user))
+   return res.status(201).json(new ApiResponse(201, user));
 })
 
 
