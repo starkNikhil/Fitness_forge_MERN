@@ -3,6 +3,7 @@ import { User } from "../models/user.model.js";
 import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/apiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
+import { showAllBlogs } from "./blog.controller.js";
 import { generateAccessAndRefreshToken } from "./user.controller.js";
 
 const registerAdmin = asyncHandler(async (req, res) => {
@@ -127,16 +128,13 @@ const deleteBlog = asyncHandler(async (req, res) => {
 })
 
 
-const getAllUsers = asyncHandler(async (req,res) => {
+const getAllUsers = asyncHandler(async (req, res) => {
     try {
-        const users = await User.find({'roles': 'user'});
-        res.status(200).json(new ApiResponse(200, {users}))
+        const users = await User.find({ 'roles': 'user' });
+        res.status(200).json(new ApiResponse(200, { users }))
     } catch (error) {
         throw new ApiError(500, error)
-        
     }
-
-    
 })
 
 export { registerAdmin, adminLogin, adminLogOut, getPendingBlogs, approveBlogs, deleteBlog, getAllUsers }

@@ -2,6 +2,7 @@ import { Router } from "express";
 import { adminLogin, adminLogOut, approveBlogs, deleteBlog, getAllUsers, getPendingBlogs, registerAdmin } from "../controllers/admin.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import { authAdmin } from "../middlewares/admin.middleware.js";
+import { showAllBlogs } from "../controllers/blog.controller.js";
 
 const router = Router();
 
@@ -31,5 +32,8 @@ router.route('/:blogId').delete(verifyJWT, authAdmin, deleteBlog)
 // get all users
 
 router.route('/getAllUsers').get(verifyJWT, authAdmin, getAllUsers)
+
+// get all blogs 
+router.route('/getAllBlogs').get(showAllBlogs)
 
 export default router
