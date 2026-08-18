@@ -1,3 +1,4 @@
+import { Blogs } from "../models/blogs.schema.js";
 import { User } from "../models/user.model.js";
 import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/apiResponse.js";
@@ -80,4 +81,14 @@ const adminLogOut = asyncHandler(async (req, res) => {
     json(new ApiResponse(200, {}, "User logged out successfully"))
 })
 
-export { registerAdmin, adminLogin, adminLogOut }
+const getPendingBlogs = asyncHandler(async (req, res) => {
+    const pendingApprovals = await Blogs.find({status: 'pending'})
+    console.log(pendingApprovals);
+    if(!pendingApprovals){
+        res.status(201).json(new ApiResponse(201, "No pending approval blogs"))
+    }
+    res.status(200).json(new ApiResponse(200, {blogs: pendingApprovals}))
+    
+})
+
+export { registerAdmin, adminLogin, adminLogOut, getPendingBlogs }
