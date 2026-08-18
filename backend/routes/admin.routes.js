@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { adminLogin, adminLogOut, approveBlogs, getPendingBlogs, registerAdmin } from "../controllers/admin.controller.js";
+import { adminLogin, adminLogOut, approveBlogs, deleteBlog, getPendingBlogs, registerAdmin } from "../controllers/admin.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import { authAdmin } from "../middlewares/admin.middleware.js";
 
@@ -10,7 +10,7 @@ const router = Router();
 router.route('/registerAdmin').post(registerAdmin)
 
 // Admin login 
-router.route("/adminLogin").post( adminLogin)
+router.route("/adminLogin").post(adminLogin)
 
 // admin Logout
 
@@ -23,5 +23,9 @@ router.route('/getPendingBlogs').get(verifyJWT, authAdmin, getPendingBlogs)
 // approve pending blogs
 
 router.route('/:blogId/approve').patch(verifyJWT, authAdmin, approveBlogs)
+
+// delete blogs
+
+router.route('/:blogId').delete(verifyJWT, authAdmin, deleteBlog)
 
 export default router
