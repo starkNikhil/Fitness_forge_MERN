@@ -84,11 +84,31 @@ const adminLogOut = asyncHandler(async (req, res) => {
 const getPendingBlogs = asyncHandler(async (req, res) => {
     const pendingApprovals = await Blogs.find({status: 'pending'})
     console.log(pendingApprovals);
-    if(!pendingApprovals){
+    if(pendingApprovals.length == 0){
         res.status(201).json(new ApiResponse(201, "No pending approval blogs"))
     }
     res.status(200).json(new ApiResponse(200, {blogs: pendingApprovals}))
     
 })
 
-export { registerAdmin, adminLogin, adminLogOut, getPendingBlogs }
+const approveBlogs = asyncHandler(async (req,res) => {
+    const blog = await Blogs.findById(req.params.blogId)
+    if(!blog){
+        throw new ApiError(401, "Blog not found");
+    }
+    if(blog.status !== 'pending'){
+        res.status(204).json(new ApiResponse(204, "Selected blog is already approved."))
+    }
+    const updateStatus = await Blogs.findByIdAndUpdate(req.params.blogId, {
+         $set: { status: "approved" }
+    })
+
+    const updatedBlog = await Blogs.findById(req.params.blogId);
+    if(updatedBlog.status !== 'approved'){
+        res.status(500).json(new ApiResponse(500, "Something went wrong while updating status."))
+    }
+    res.status(200).json(new ApiResponse(200, updatedBlog, "Status updated successfully"))
+
+})
+
+export { registerAdmin, adminLogin, adminLogOut, getPendingBlogs, approveBlogs }

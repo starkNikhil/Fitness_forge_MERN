@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { adminLogin, adminLogOut, getPendingBlogs, registerAdmin } from "../controllers/admin.controller.js";
+import { adminLogin, adminLogOut, approveBlogs, getPendingBlogs, registerAdmin } from "../controllers/admin.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import { authAdmin } from "../middlewares/admin.middleware.js";
 
@@ -19,5 +19,9 @@ router.route('/adminLogout').post(verifyJWT, authAdmin, adminLogOut)
 // Getting all pending approval blogs
 
 router.route('/getPendingBlogs').get(verifyJWT, authAdmin, getPendingBlogs)
+
+// approve pending blogs
+
+router.route('/:blogId/approve').patch(verifyJWT, authAdmin, approveBlogs)
 
 export default router
