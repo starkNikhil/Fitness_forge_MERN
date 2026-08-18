@@ -126,4 +126,17 @@ const deleteBlog = asyncHandler(async (req, res) => {
 
 })
 
-export { registerAdmin, adminLogin, adminLogOut, getPendingBlogs, approveBlogs, deleteBlog }
+
+const getAllUsers = asyncHandler(async (req,res) => {
+    try {
+        const users = await User.find({'roles': 'user'});
+        res.status(200).json(new ApiResponse(200, {users}))
+    } catch (error) {
+        throw new ApiError(500, error)
+        
+    }
+
+    
+})
+
+export { registerAdmin, adminLogin, adminLogOut, getPendingBlogs, approveBlogs, deleteBlog, getAllUsers }

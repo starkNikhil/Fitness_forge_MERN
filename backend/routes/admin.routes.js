@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { adminLogin, adminLogOut, approveBlogs, deleteBlog, getPendingBlogs, registerAdmin } from "../controllers/admin.controller.js";
+import { adminLogin, adminLogOut, approveBlogs, deleteBlog, getAllUsers, getPendingBlogs, registerAdmin } from "../controllers/admin.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import { authAdmin } from "../middlewares/admin.middleware.js";
 
@@ -27,5 +27,9 @@ router.route('/:blogId/approve').patch(verifyJWT, authAdmin, approveBlogs)
 // delete blogs
 
 router.route('/:blogId').delete(verifyJWT, authAdmin, deleteBlog)
+
+// get all users
+
+router.route('/getAllUsers').get(verifyJWT, authAdmin, getAllUsers)
 
 export default router
