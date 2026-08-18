@@ -31,7 +31,7 @@ const registerAdmin = asyncHandler(async (req, res) => {
 const adminLogin = asyncHandler(async (req, res) => {
     const { userName, email, password } = req.body;
     console.log(`userName: ${userName}, email: ${email}, password: ${password}`);
-    
+
     if (!(userName && password)) {
         throw new ApiError(400, "Wrong credentials")
     }
@@ -40,7 +40,7 @@ const adminLogin = asyncHandler(async (req, res) => {
         throw new ApiError(404, "User does not exist");
     }
     console.log(admin);
-    
+
 
     const isPasswordValid = await admin.isPasswordCorrect(password);
     if (!isPasswordValid) {
@@ -60,11 +60,24 @@ const adminLogin = asyncHandler(async (req, res) => {
         json(new ApiResponse(200, {
             user: loggedInAdmin,
             accessToken: accessToken,
-            refreshToken : refreshToken
+            refreshToken: refreshToken
         }, "Admin logged in successfully"))
 
 })
 
-// const adminLogOut
+const adminLogOut = asyncHandler(async (req, res) => {
+    await User.findByIdAndUpdate(req.user._id, {
+        $set: { refreshToken: null }
+    }, {
+        new: true
+    });
+    const options = {
+        httpOnly: true,
+        secure: true
+    }
+    res.status(200).clearCookie('accessToken', options).
+    clearCookie("refreshToken", options).
+    json(new ApiResponse(200, {}, "User logged out successfully"))
+})
 
-export { registerAdmin, adminLogin }
+export { registerAdmin, adminLogin, adminLogOut }
