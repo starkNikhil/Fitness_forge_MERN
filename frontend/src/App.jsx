@@ -1,6 +1,7 @@
 
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import NavBar from './components/NavBar'
+import Register from './components/Register';
 
 function App() {
   
@@ -8,7 +9,7 @@ function App() {
   return (
     <>
      <Router>
-      <NavBar></NavBar>
+      <Register></Register>
      </Router>
     </>
   )
