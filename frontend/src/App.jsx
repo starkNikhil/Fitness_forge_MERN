@@ -1,18 +1,18 @@
-
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import NavBar from './components/NavBar'
-import Register from './components/Register';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import NavBar from "./components/NavBar";
+import Register from "./components/Register";
+import SignIn from "./components/SignIn";
 
 function App() {
-  
-
   return (
-    <>
-     <Router>
-      <Register></Register>
-     </Router>
-    </>
-  )
+    <Router>
+      <NavBar />
+      <Routes>
+        <Route path="register" element={<Register />} />
+        <Route path="LogIn" element={<SignIn />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
