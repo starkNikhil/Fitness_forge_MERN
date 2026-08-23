@@ -2,6 +2,9 @@ import bgImg from "../assets/bg-img.jpg";
 import icon1 from "../assets/icons8-treadmill-64.png";
 import icon2 from "../assets/orange-juice-50.png"
 import icon3 from "../assets/list-64.png"
+import icon4 from "../assets/dumbell-64.png"
+
+import icon5 from "../assets/heartbeat-50.png"
 function HomePage() {
   return (
     <>
@@ -52,26 +55,24 @@ function HomePage() {
             </div>
             <div className="container-sm">
               <div className="icon-box">
-                <img className="icon1" src={icon1} alt="treadmillLogo" />
+                <img className="icon1" src={icon4} alt="dumbbell-64" />
               </div>
-              <p className="icon-heading"> Best Equipments</p>
+              <p className="icon-heading"> Professional Workout</p>
               <p className="container-text">
-                {" "}
-                Explore our gym's top-tier equipment, meticulously chosen for
-                optimal results, showcased on our website for a glimpse into
-                excellence.
+                Elevate your fitness journey with
+                        our gym, offering expertly crafted professional workout
+                        plans for unparalleled results.
               </p>
             </div>
             <div className="container-sm">
               <div className="icon-box">
-                <img className="icon1" src={icon1} alt="treadmillLogo" />
+                <img className="icon1" src={icon5} alt="heartbeat-50" />
               </div>
-              <p className="icon-heading"> Best Equipments</p>
+              <p className="icon-heading"> Track your progress</p>
               <p className="container-text">
-                {" "}
-                Explore our gym's top-tier equipment, meticulously chosen for
-                optimal results, showcased on our website for a glimpse into
-                excellence.
+                Elevate your fitness journey with
+                        our gym website feature, empowering you to effortlessly
+                        track and record workout progress.
               </p>
             </div>
           </div>
