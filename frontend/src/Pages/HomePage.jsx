@@ -1,10 +1,14 @@
 import bgImg from "../assets/bg-img.jpg";
 import icon1 from "../assets/icons8-treadmill-64.png";
-import icon2 from "../assets/orange-juice-50.png"
-import icon3 from "../assets/list-64.png"
-import icon4 from "../assets/dumbell-64.png"
+import icon2 from "../assets/orange-juice-50.png";
+import icon3 from "../assets/list-64.png";
+import icon4 from "../assets/dumbell-64.png";
+import silver_card from "../assets/dumbbell-solid.svg";
+import gold_card from "../assets/medal-solid.svg";
+import platinum_card from "../assets/platinum.svg";
+import blog_card from "../assets/gym-card.jpg";
 
-import icon5 from "../assets/heartbeat-50.png"
+import icon5 from "../assets/heartbeat-50.png";
 function HomePage() {
   return (
     <>
@@ -48,9 +52,9 @@ function HomePage() {
               <p className="icon-heading"> Plan your own workout</p>
               <p className="container-text">
                 {" "}
-                Empower your fitness journey with
-                        our gym website's unique feature—tailor and conquer your
-                        goals by planning personalized workouts.
+                Empower your fitness journey with our gym website's unique
+                feature—tailor and conquer your goals by planning personalized
+                workouts.
               </p>
             </div>
             <div className="container-sm">
@@ -59,9 +63,8 @@ function HomePage() {
               </div>
               <p className="icon-heading"> Professional Workout</p>
               <p className="container-text">
-                Elevate your fitness journey with
-                        our gym, offering expertly crafted professional workout
-                        plans for unparalleled results.
+                Elevate your fitness journey with our gym, offering expertly
+                crafted professional workout plans for unparalleled results.
               </p>
             </div>
             <div className="container-sm">
@@ -70,10 +73,190 @@ function HomePage() {
               </div>
               <p className="icon-heading"> Track your progress</p>
               <p className="container-text">
-                Elevate your fitness journey with
-                        our gym website feature, empowering you to effortlessly
-                        track and record workout progress.
+                Elevate your fitness journey with our gym website feature,
+                empowering you to effortlessly track and record workout
+                progress.
               </p>
+            </div>
+          </div>
+        </section>
+        <section className="classes">
+          <div className="text-center">
+            <p className="text-orange heading">Our Plans</p>
+          </div>
+          <div className="text-center">
+            <p className="sub-heading">Choose your pricing plan</p>
+          </div>
+
+          <div className="card-container">
+            <div className="membership-card silver">
+              <div className="card">
+                <div className="membership-title">
+                  <img src={silver_card} alt="silver" className="card-icon " />
+                  <h3>silver</h3>
+                </div>
+                <div className="membership-perks">
+                  <p>
+                    <span className="Price-style"> 35</span>
+                    <span className="euro-style">$/month</span>
+                  </p>
+                  <p>Gain access to the gym room</p>
+                  <p>Group Fitness Classes</p>
+                </div>
+                <input type="hidden" name="plan" value="Silver" />
+                <input type="hidden" name="amount" value="3500" />
+                <button
+                  id="rzp-btn"
+                  className="get-started-btn membership-btn"
+                  type="submit"
+                >
+                  Sign Up
+                </button>
+              </div>
+            </div>
+
+            <div className="membership-card gold">
+              <div className="card">
+                <div className="membership-title">
+                  <img src={gold_card} alt="gold" className="card-icon " />
+                  <h3>Gold</h3>
+                </div>
+                <div className="membership-perks">
+                  <p>
+                    <span className="Price-style">95</span>
+                    <span className="euro-style">$/month</span>
+                  </p>
+                  <p>Gain access to the gym room</p>
+                  <p>Group Fitness Classes</p>
+                  <p>Access to Sauna and Courts</p>
+                </div>
+                <input type="hidden" name="plan" value="Gold" />
+                <input type="hidden" name="amount" value="9500" />
+                <button
+                  id="rzp-btn"
+                  className="get-started-btn membership-btn"
+                  type="submit"
+                >
+                  Sign Up
+                </button>
+              </div>
+            </div>
+            <div className="membership-card platinum">
+              <div className="card">
+                <div className="membership-title">
+                  <img
+                    src={platinum_card}
+                    alt="platinum"
+                    className="card-icon "
+                  />
+                  <h3>Platinum</h3>
+                </div>
+                <div className="membership-perks">
+                  <p>
+                    <span className="Price-style">195</span>
+                    <span className="euro-style">$/month</span>
+                  </p>
+                  <p>Access to everything we offer!</p>
+                </div>
+                <input type="hidden" name="plan" value="Platinum" />
+                <input type="hidden" name="amount" value="19500" />
+                <button
+                  id="rzp-btn"
+                  className="get-started-btn membership-btn"
+                  type="submit"
+                >
+                  Sign Up
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="blog-cards-section" id="blogs">
+          <div className="text-center bg-orange">
+            <h3 className="text-red"> Our Blogs</h3>
+            <p className="blog-sub-heading">Latest Blog Feed</p>
+            <div className="blog-container">
+              <div className="blog-card">
+                <div className="card-banner image-holder">
+                  <img
+                    src={blog_card}
+                    alt="gym-card"
+                    className="img-cover w-64"
+                    loading="lazy"
+                  />
+                  <time datetime="load from backend" className="card-meta">
+                    7 july 2022
+                  </time>
+                </div>
+                <div className="card-content">
+                  <h3 className="h3">
+                    <a href="" className="card-title">
+                      Going to gym for th first time
+                    </a>
+                  </h3>
+                  <p className="card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Quas cum hic fugiat eos harum voluptatibus.
+                  </p>
+                  <a href="" className="btn-link has-before">
+                    READ MORE
+                  </a>
+                </div>
+              </div>
+              <div className="blog-card">
+                <div className="card-banner image-holder">
+                  <img
+                    src={blog_card}
+                    alt="gym-card"
+                    className="img-cover w-64"
+                    loading="lazy"
+                  />
+                  <time datetime="load from backend" className="card-meta">
+                    7 july 2022
+                  </time>
+                </div>
+                <div className="card-content">
+                  <h3 className="h3">
+                    <a href="" className="card-title">
+                      Going to gym for th first time
+                    </a>
+                  </h3>
+                  <p className="card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Quas cum hic fugiat eos harum voluptatibus.
+                  </p>
+                  <a href="" className="btn-link has-before">
+                    READ MORE
+                  </a>
+                </div>
+              </div>
+              <div className="blog-card">
+                <div className="card-banner image-holder">
+                  <img
+                    src={blog_card}
+                    alt="gym-card"
+                    className="img-cover w-64"
+                    loading="lazy"
+                  />
+                  <time datetime="load from backend" className="card-meta">
+                    7 july 2022
+                  </time>
+                </div>
+                <div className="card-content">
+                  <h3 className="h3">
+                    <a href="" className="card-title">
+                      Going to gym for th first time
+                    </a>
+                  </h3>
+                  <p className="card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Quas cum hic fugiat eos harum voluptatibus.
+                  </p>
+                  <a href="" className="btn-link has-before">
+                    READ MORE
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </section>
