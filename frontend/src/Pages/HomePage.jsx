@@ -1,4 +1,4 @@
-import bgImg from "../assets/bg-img.jpg";
+// import bgImg from "../assets/bg-img.jpg";
 import icon1 from "../assets/icons8-treadmill-64.png";
 import icon2 from "../assets/orange-juice-50.png";
 import icon3 from "../assets/list-64.png";
@@ -12,17 +12,17 @@ import icon5 from "../assets/heartbeat-50.png";
 function HomePage() {
   return (
     <>
-      <div className="Hero-container">
-        <div className="img-container">
-          <img src={bgImg} alt="Background-Image" />
+      <div className="Hero-container items-center flex flex-start bg-[url(../assets/bg-img.jpg)]">
+        <div >
+          {/* <img src={bgImg} alt="Background-Image"  className="w-full bg-[#1d2128]"/> */}
         </div>
-        <div className="hero-text-container">
+        <div className="hero-text-container flex flex-col text-[60px] items-center static">
           <p>
-            <span>Your </span> <span>Fitness </span>
-            <span>Your </span> <span>Forge </span>
+            <span>Your </span> <span className="text-[#ed7d2d]">Fitness </span>
+            <span className="text-[#A7ADB7]">Your </span> <span className="text-[#ed7d2d]">Forge </span>
           </p>
           <p>
-            <span>Your </span> <span>Rules </span>
+            <span>Your </span> <span className="text-[#ed7d2d]">Rules </span>
           </p>
         </div>
       </div>

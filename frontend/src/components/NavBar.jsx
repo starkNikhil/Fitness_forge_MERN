@@ -2,13 +2,13 @@ import logo from "../assets/logo-img.png";
 
 function NavBar() {
   return (
-    <nav className="navbar flex justify-between ">
-      <div className="logo-section flex">
+    <nav className="navbar flex justify-between items-center fixed w-full bg-[#1d2128] opacity-60 text-white">
+      <div className="logo-section flex items-center">
         <a href="/">
-          <img src={logo} alt="Fitness-Forge" className="logo-image w-24"/>
+          <img src={logo} alt="Fitness-Forge" className="logo-image w-[85px] h-[68px]"/>
         </a>
-        <a href="">
-          <span>Fitness</span>
+        <a href="" className=" mb-3">
+          <span className="mr-2">Fitness</span>
           <span>Forge</span>
         </a>
       </div>
