@@ -13,7 +13,7 @@ function HomePage() {
   return (
     <>
       <div className="Hero-container  flex bg-[url(/bg-img.jpg)] bg-contain  bg-no-repeat w-full h-screen text-white">
-        <div className="hero-text-container flex flex-col text-[60px] items-center mt-">
+        <div className="hero-text-container flex flex-col text-[60px] mt-[100px] w-full">
           <p>
             <span>Your </span> <span className="text-[#ed7d2d]">Fitness </span>
             <span className="text-[#A7ADB7]">Your </span>{" "}
@@ -36,7 +36,7 @@ function HomePage() {
               </div>
               <p className="icon-heading"> Best Equipments</p>
               <p className="container-text">
-                {" "}
+                
                 Explore our gym's top-tier equipment, meticulously chosen for
                 optimal results, showcased on our website for a glimpse into
                 excellence.
