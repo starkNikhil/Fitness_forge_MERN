@@ -12,7 +12,8 @@ import icon5 from "../assets/heartbeat-50.png";
 function HomePage() {
   return (
     <>
-      <div className="Hero-container  flex bg-[url(/bg-img.jpg)] bg-contain  bg-no-repeat w-full h-screen text-white">
+      <div className=" w-full h-screen bg-[url(/bg-img.jpg)] bg-cover bg-center bg-no-repeat flex items-center justify-center pt-16">
+      {/* <div className="absolute inset-0 bg-black/50" /> */}
         <div className="hero-text-container flex flex-col text-[60px] mt-[100px] w-full">
           <p>
             <span>Your </span> <span className="text-[#ed7d2d]">Fitness </span>
