@@ -1,7 +1,7 @@
 // import bgImg from "../assets/bg-img.jpg";
 import icon1 from "../assets/icons8-treadmill-64.png";
 import icon2 from "../assets/orange-juice-50.png";
-import icon3 from "../assets/list-64.png";
+
 import icon4 from "../assets/dumbell-64.png";
 import silver_card from "../assets/dumbbell-solid.svg";
 import gold_card from "../assets/medal-solid.svg";
@@ -12,9 +12,8 @@ import icon5 from "../assets/heartbeat-50.png";
 function HomePage() {
   return (
     <>
-      <div className=" w-full h-screen bg-[url(/bg-img.jpg)] bg-cover bg-center bg-no-repeat flex items-center justify-center pt-16">
-      
-        <div className="hero-text-container flex flex-col text-[60px] mt-[100px] w-full">
+      <div className=" w-full bg-[url(/bg-img.jpg)] bg-cover bg-center bg-no-repeat flex items-center justify-center pt-16">
+        <div className="hero-text-container flex flex-col text-[60px] mt-[100px] w-full text-white">
           <p>
             <span>Your </span> <span className="text-[#ed7d2d]">Fitness </span>
             <span className="text-[#A7ADB7]">Your </span>{" "}
@@ -26,52 +25,65 @@ function HomePage() {
         </div>
       </div>
       <div className="Box bg-[#1d2128]">
-        <section className="sm-intro">
-          <div className="text-center">
-            <span className="text-orange">WHY CHOOSE US ?</span>
+        <section className="sm-intro pb-[20px]">
+          <div className="flex items-center justify-center pt-[20px] ">
+            <span className="text-[#ed7d2d] w-[150px] flex justify-center">
+              WHY CHOOSE US ?
+            </span>
           </div>
-          <div className="container">
-            <div className="container-sm">
-              <div className="icon-box">
-                <img className="icon1" src={icon1} alt="treadmillLogo" />
+          <div className=" flex relative  justify-evenly w-full mt-[20px]">
+            <div className="container-sm flex items-center flex-col">
+              <div className="icon-box relative w-[100px] h-[100px] bg-[#46505a] rounded-[50%] mb-[15px] mt-2">
+                <img className="icon1 relative top-4 left-4" src={icon1} alt="treadmillLogo" />
               </div>
-              <p className="icon-heading"> Best Equipments</p>
-              <p className="container-text">
+              <p className="icon-heading mx-[20px] text-center">
                 
+                Best Equipments
+              </p>
+              <p className="container-text py-[15px] text-center text-[#a7adb7]">
                 Explore our gym's top-tier equipment, meticulously chosen for
                 optimal results, showcased on our website for a glimpse into
                 excellence.
               </p>
             </div>
-            <div className="container-sm">
-              <div className="icon-box">
-                <img className="icon1" src={icon2} alt="list64" />
-                <img className="icon1" src={icon3} alt="orange-juice" />
+            <div className="container-sm flex items-center flex-col">
+              <div className="icon-box relative w-[100px] h-[100px] bg-[#46505a] rounded-[50%] mb-[15px] mt-2">
+                <img className="icon1 absolute top-[22px] left-[24px]" src={icon2} alt="list64" />
+              
               </div>
-              <p className="icon-heading"> Plan your own workout</p>
-              <p className="container-text">
-                {" "}
+              <p className="icon-heading mx-[20px] text-center">
+                
+                Plan your own workout
+              </p>
+              <p className="container-text py-[15px] text-center text-[#a7adb7]">
+                
                 Empower your fitness journey with our gym website's unique
                 feature—tailor and conquer your goals by planning personalized
                 workouts.
               </p>
             </div>
-            <div className="container-sm">
-              <div className="icon-box">
-                <img className="icon1" src={icon4} alt="dumbbell-64" />
+            <div className="container-sm flex items-center flex-col">
+              <div className="icon-box relative w-[100px] h-[100px] bg-[#46505a] rounded-[50%] mb-[15px] mt-2">
+                <img className="icon1 relative top-4 left-4" src={icon4} alt="dumbbell-64" />
               </div>
-              <p className="icon-heading"> Professional Workout</p>
-              <p className="container-text">
+              <p className="icon-heading mx-[20px] text-center">
+                {" "}
+                Professional Workout
+              </p>
+              <p className="container-text py-[15px] text-center text-[#a7adb7]">
                 Elevate your fitness journey with our gym, offering expertly
                 crafted professional workout plans for unparalleled results.
               </p>
             </div>
-            <div className="container-sm">
-              <div className="icon-box">
-                <img className="icon1" src={icon5} alt="heartbeat-50" />
+            <div className="container-sm flex items-center flex-col">
+              <div className="icon-box relative w-[100px] h-[100px] bg-[#46505a] rounded-[50%] mb-[15px] mt-2">
+                <img className="icon4 relative top-[26px] left-[24px]" src={icon5} alt="heartbeat-50" />
               </div>
-              <p className="icon-heading"> Track your progress</p>
-              <p className="container-text">
+              <p className="icon-heading mx-[20px] text-center">
+                {" "}
+                Track your progress
+              </p>
+              <p className="container-text py-[15px] text-center text-[#a7adb7]">
                 Elevate your fitness journey with our gym website feature,
                 empowering you to effortlessly track and record workout
                 progress.
