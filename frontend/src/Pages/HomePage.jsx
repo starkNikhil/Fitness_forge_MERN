@@ -34,10 +34,13 @@ function HomePage() {
           <div className=" flex relative  justify-evenly w-full mt-[20px]">
             <div className="container-sm flex items-center flex-col">
               <div className="icon-box relative w-[100px] h-[100px] bg-[#46505a] rounded-[50%] mb-[15px] mt-2">
-                <img className="icon1 relative top-4 left-4" src={icon1} alt="treadmillLogo" />
+                <img
+                  className="icon1 relative top-4 left-4"
+                  src={icon1}
+                  alt="treadmillLogo"
+                />
               </div>
               <p className="icon-heading mx-[20px] text-center">
-                
                 Best Equipments
               </p>
               <p className="container-text py-[15px] text-center text-[#a7adb7]">
@@ -48,15 +51,16 @@ function HomePage() {
             </div>
             <div className="container-sm flex items-center flex-col">
               <div className="icon-box relative w-[100px] h-[100px] bg-[#46505a] rounded-[50%] mb-[15px] mt-2">
-                <img className="icon1 absolute top-[22px] left-[24px]" src={icon2} alt="list64" />
-              
+                <img
+                  className="icon1 absolute top-[22px] left-[24px]"
+                  src={icon2}
+                  alt="list64"
+                />
               </div>
               <p className="icon-heading mx-[20px] text-center">
-                
                 Plan your own workout
               </p>
               <p className="container-text py-[15px] text-center text-[#a7adb7]">
-                
                 Empower your fitness journey with our gym website's unique
                 feature—tailor and conquer your goals by planning personalized
                 workouts.
@@ -64,7 +68,11 @@ function HomePage() {
             </div>
             <div className="container-sm flex items-center flex-col">
               <div className="icon-box relative w-[100px] h-[100px] bg-[#46505a] rounded-[50%] mb-[15px] mt-2">
-                <img className="icon1 relative top-4 left-4" src={icon4} alt="dumbbell-64" />
+                <img
+                  className="icon1 relative top-4 left-4"
+                  src={icon4}
+                  alt="dumbbell-64"
+                />
               </div>
               <p className="icon-heading mx-[20px] text-center">
                 {" "}
@@ -77,7 +85,11 @@ function HomePage() {
             </div>
             <div className="container-sm flex items-center flex-col">
               <div className="icon-box relative w-[100px] h-[100px] bg-[#46505a] rounded-[50%] mb-[15px] mt-2">
-                <img className="icon4 relative top-[26px] left-[24px]" src={icon5} alt="heartbeat-50" />
+                <img
+                  className="icon4 relative top-[26px] left-[24px]"
+                  src={icon5}
+                  alt="heartbeat-50"
+                />
               </div>
               <p className="icon-heading mx-[20px] text-center">
                 {" "}
@@ -94,23 +106,27 @@ function HomePage() {
       </div>
       <section className="classes bg-[#292e37] text-center w-full">
         <div className="text-center flex relative justify-center top-7">
-          <p className="text-[#ed7d2d] mb-[15px] text-[32px] heading">Our Plans</p>
+          <p className="text-[#ed7d2d] mb-[15px] text-[32px] heading">
+            Our Plans
+          </p>
         </div>
         <div className="text-center flex relative justify-center top-7">
-          <p className="sub-heading text-xl text-[#ed7d2d]">Choose your pricing plan</p>
+          <p className="sub-heading text-xl text-[#ed7d2d]">
+            Choose your pricing plan
+          </p>
         </div>
 
         <div className="card-container flex items-center mt-24 justify-center">
-          <div className="membership-card silver mt-[15px]">
+          <div className="membership-card silver mt-[15px] p-[16px] border-white border-solid border-[3px] bg-gradient-to-r from-[#f9032f] to-[#000] rounded-[16px] flex flex-col justify-between items-center my-[14px] cursor-pointer">
             <div className="card">
-              <div className="membership-title">
-                <img src={silver_card} alt="silver" className="card-icon " />
-                <h3>silver</h3>
+              <div className="membership-title text-center relative">
+                <img src={silver_card} alt="silver" className="card-icon mb-[20px] w-[80px]" />
+                <h3 className="text-[clamp(16px,5vw,32px)] mb-[24px]">silver</h3>
               </div>
-              <div className="membership-perks">
-                <p>
-                  <span className="Price-style"> 35</span>
-                  <span className="euro-style">$/month</span>
+              <div className="membership-perks mb-4 min-h-[150px]">
+                <p className="mb-[16px] text-[17px]">
+                  <span className="Price-style text-[48px] mr-[5px] font-bold"> 35</span>
+                  <span className="euro-style text-[20px]">$/month</span>
                 </p>
                 <p>Gain access to the gym room</p>
                 <p>Group Fitness Classes</p>
@@ -127,16 +143,16 @@ function HomePage() {
             </div>
           </div>
 
-          <div className="membership-card gold">
+          <div className="membership-card gold mt-[24px] relative p-[16px] border-white border-solid border-[3px] bg-gradient-to-r from-[#f9032f] to-[#000] rounded-[16px] flex flex-col justify-between items-center my-[14px] cursor-pointer">
             <div className="card">
-              <div className="membership-title">
-                <img src={gold_card} alt="gold" className="card-icon " />
-                <h3>Gold</h3>
+              <div className="membership-title text-center relative">
+                <img src={gold_card} alt="gold" className="card-icon mb-[20px] w-[80px]" />
+                <h3 className="text-[clamp(16px,5vw,32px)] mb-[24px]">Gold</h3>
               </div>
-              <div className="membership-perks">
-                <p>
-                  <span className="Price-style">95</span>
-                  <span className="euro-style">$/month</span>
+              <div className="membership-perks mb-4 min-h-[150px]">
+                <p className="mb-[16px] text-[17px]">
+                  <span className="Price-style text-[48px] mr-[5px] font-bold">95</span>
+                  <span className="euro-style text-[20px]">$/month</span>
                 </p>
                 <p>Gain access to the gym room</p>
                 <p>Group Fitness Classes</p>
@@ -153,20 +169,20 @@ function HomePage() {
               </button>
             </div>
           </div>
-          <div className="membership-card platinum">
+          <div className="membership-card platinum mt-[50px] h-[440px] p-[16px] border-white border-solid border-[3px] bg-gradient-to-r from-[#f9032f] to-[#000] rounded-[16px] flex flex-col justify-between items-center my-[14px] cursor-pointer">
             <div className="card">
-              <div className="membership-title">
+              <div className="membership-title text-center relative">
                 <img
                   src={platinum_card}
                   alt="platinum"
-                  className="card-icon "
+                  className="card-icon mb-[20px] w-[80px]"
                 />
-                <h3>Platinum</h3>
+                <h3 className="text-[clamp(16px,5vw,32px)] mb-[24px]">Platinum</h3>
               </div>
-              <div className="membership-perks">
-                <p>
-                  <span className="Price-style">195</span>
-                  <span className="euro-style">$/month</span>
+              <div className="membership-perks mb-4 min-h-[150px]">
+                <p className="mb-[16px] text-[17px]">
+                  <span className="Price-style text-[48px] mr-[5px] font-bold">195</span>
+                  <span className="euro-style text-[20px]">$/month</span>
                 </p>
                 <p>Access to everything we offer!</p>
               </div>
