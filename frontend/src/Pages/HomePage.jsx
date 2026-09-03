@@ -92,16 +92,16 @@ function HomePage() {
           </div>
         </section>
       </div>
-      <section className="classes">
-        <div className="text-center">
-          <p className="text-orange heading">Our Plans</p>
+      <section className="classes bg-[#292e37] text-center w-full">
+        <div className="text-center flex relative justify-center top-7">
+          <p className="text-[#ed7d2d] mb-[15px] text-[32px] heading">Our Plans</p>
         </div>
-        <div className="text-center">
-          <p className="sub-heading">Choose your pricing plan</p>
+        <div className="text-center flex relative justify-center top-7">
+          <p className="sub-heading text-xl text-[#ed7d2d]">Choose your pricing plan</p>
         </div>
 
-        <div className="card-container">
-          <div className="membership-card silver">
+        <div className="card-container flex items-center mt-24 justify-center">
+          <div className="membership-card silver mt-[15px]">
             <div className="card">
               <div className="membership-title">
                 <img src={silver_card} alt="silver" className="card-icon " />
