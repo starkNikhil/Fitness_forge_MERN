@@ -135,7 +135,7 @@ function HomePage() {
               <input type="hidden" name="amount" value="3500" />
               <button
                 id="rzp-btn"
-                className="get-started-btn membership-btn"
+                className="get-started-btn membership-btn px-[16px] py-[48px] border-none bg-[#000000] text-[#ffffff] text-[16px] cursor-pointer outline-none no-underline rounded-[4px] font-bold uppercase shadow-[0_0_10px_1px_#f90032]n"
                 type="submit"
               >
                 Sign Up
@@ -162,7 +162,7 @@ function HomePage() {
               <input type="hidden" name="amount" value="9500" />
               <button
                 id="rzp-btn"
-                className="get-started-btn membership-btn"
+                className="get-started-btn membership-btn px-[16px] py-[48px] border-none bg-[#000000] text-[#ffffff] text-[16px] cursor-pointer outline-none no-underline rounded-[4px] font-bold uppercase shadow-[0_0_10px_1px_#f90032]"
                 type="submit"
               >
                 Sign Up
@@ -190,7 +190,7 @@ function HomePage() {
               <input type="hidden" name="amount" value="19500" />
               <button
                 id="rzp-btn"
-                className="get-started-btn membership-btn"
+                className="get-started-btn membership-btn px-[16px] py-[48px] border-none bg-[#000000] text-[#ffffff] text-[16px] cursor-pointer outline-none no-underline rounded-[4px] font-bold uppercase shadow-[0_0_10px_1px_#f90032]"
                 type="submit"
               >
                 Sign Up
