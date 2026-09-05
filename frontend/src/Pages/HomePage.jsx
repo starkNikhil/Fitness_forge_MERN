@@ -199,8 +199,8 @@ function HomePage() {
           </div>
         </div>
       </section>
-      <section className="blog-cards-section" id="blogs">
-        <div className="text-center bg-orange">
+      <section className="blog-cards-section bg-[#dee1e6] w-full h-full block py-[120px]" id="blogs">
+        <div className="flex justify-center relative top-[30px] text-center bg-orange items-center rounded-[8px] h-[50px] bg-[rgb(249,3,47,.14)]">
           <h3 className="text-red"> Our Blogs</h3>
           <p className="blog-sub-heading">Latest Blog Feed</p>
           <div className="blog-container">
