@@ -201,18 +201,18 @@ function HomePage() {
       </section>
       <section className="blog-cards-section bg-[#dee1e6] w-full h-full block py-[120px]" id="blogs">
         <div className="flex justify-center relative top-[30px] text-center bg-orange items-center rounded-[8px] h-[50px] bg-[rgb(249,3,47,.14)]">
-          <h3 className="text-red"> Our Blogs</h3>
-          <p className="blog-sub-heading">Latest Blog Feed</p>
+          <h3 className="text-red text-[#f9032f] text-xl"> Our Blogs</h3>
+          <p className="blog-sub-heading relative text-[#171a1f] text-2xl top-[50px] flex justify-center font-bold">Latest Blog Feed</p>
           <div className="blog-container">
-            <div className="blog-card">
-              <div className="card-banner image-holder">
+            <div className="blog-card text-[#ffffff] border-[#ccc] border-solid rounded-[1px]">
+              <div className="card-banner image-holder relative">
                 <img
                   src={blog_card}
                   alt="gym-card"
-                  className="img-cover w-64"
+                  className="img-cover w-full h-full object-cover"
                   loading="lazy"
                 />
-                <time datetime="load from backend" className="card-meta">
+                <time datetime="load from backend" className="card-meta px-[15px] py-[30px] ">
                   7 july 2022
                 </time>
               </div>
