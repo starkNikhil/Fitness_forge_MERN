@@ -212,7 +212,7 @@ function HomePage() {
                   className="img-cover w-full h-full object-cover"
                   loading="lazy"
                 />
-                <time datetime="load from backend" className="card-meta px-[15px] py-[30px] ">
+                <time datetime="load from backend" className="card-meta px-[15px] py-[30px] bg-[#fd3d0d] ">
                   7 july 2022
                 </time>
               </div>
